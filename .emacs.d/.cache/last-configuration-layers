@@ -1,0 +1,2 @@
+
+(setq dotspacemacs-configuration-layers (quote (perl5 helm (auto-completion :variables auto-completion-enable-snippets-in-popup t auto-completion-tab-key-behavior (quote cycle) auto-completion-complete-with-key-sequence nil auto-completion-complete-with-key-sequence-delay 0.1) better-defaults emacs-lisp lsp git org themes-megapack (shell :variables shell-default-height 30 shell-default-position (quote bottom)) spell-checking syntax-checking javascript (python :variables python-backend (quote lsp)) sql html)))
