@@ -1,0 +1,2 @@
+
+(setq dotspacemacs-configuration-layers (quote (vimscript yaml helm auto-completion better-defaults emacs-lisp git org spacemacs-org (shell :variables shell-default-height 30 shell-default-position (quote bottom)) spell-checking syntax-checking)))

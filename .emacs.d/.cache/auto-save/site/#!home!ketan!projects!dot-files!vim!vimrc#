@@ -1,0 +1,298 @@
+set nocp
+scriptencoding utf-8
+set encoding=utf-8
+filetype off
+
+"set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Let Vundle manage Vundle
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'SirVer/ultisnips'
+Plugin 'ervandew/supertab'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'preservim/nerdtree'
+Plugin 'chrisbra/csv.vim'
+Plugin 'preservim/nerdcommenter'
+
+" All plugins must be added before this
+call vundle#end()
+
+filetype plugin on
+filetype indent on
+
+runtime macros/matchit.vim
+
+
+" Map leader key to comma
+let mapleader=","
+
+set hidden " Allow unsaved buffers
+set foldenable "enable folding
+
+" space open/closes folds
+nnoremap <space> za
+set foldlevelstart=99 " Dont start new buffers folded
+set foldmethod=indent
+
+autocmd FileType vim setlocal foldmethod=marker
+
+"{{{ tabs and spaces
+
+set bs=indent,eol,start " Allow backspacing over everything in insert mode
+set tabstop=4 " Tab indentation levels every four columns
+set softtabstop=4
+set expandtab "Convert all tabs that are typed to spaces
+set shiftround "Always indent/outdent to nearest tabstop
+set shiftwidth=4 "indent/outdent by four columns
+set smarttab "Use shiftwidths at left margin, tabstops everywhere else
+
+set nrformats-=octal
+
+set autoindent 
+set smartindent
+
+syntax enable
+syntax sync minlines=10000 " Enable syntax for large files
+" <leader>fs will redo the syntax for the file
+nnoremap <leader>fs :syntax sync minlines=10000<CR>
+
+"wrapping of lines
+set colorcolumn=100
+set textwidth=100
+set wrap
+"when wrapping is used, use +++ to denote the break lines
+let &showbreak = '+++ '
+"make tab in visual mode indent code
+vnoremap <tab> >gv
+vnoremap <s-tab> <gv
+
+"}}}
+
+"{{{ colors and display
+" enable 256 colors
+set t_Co=256
+set background=dark
+
+color PaperColor
+set number
+set ruler
+set scrolloff=1
+set sidescrolloff=5
+set display+=lastline
+set highlight+=N:DiffText " Make current line number stand out a little
+set highlight+=c:LineNr " Blend vertical separators with line numbers
+
+" Make the completion popup look menu-is on a Mac
+highlight Pmenu ctermbg=white ctermfg=black
+highlight PmenuSel ctermbg=blue ctermfg=white cterm=bold
+highlight PmenuSbar ctermbg=grey ctermfg=grey
+highlight PmenuThumb ctermbg=blue ctermfg=blue
+highlight Folded ctermfg=cyan ctermbg=black
+
+set showcmd " show command in bottom bar
+
+au BufEnter * setlocal cursorline " Enbale cursor line on active window
+au BufLeave * setlocal nocursorline "Suppress cursorline on inactive window
+set wildchar=<Tab>
+set wildcharm=<C-Z> "from https://vim.fandom.com/wiki/Easier_buffer_switching
+
+set fillchars=vert:┃
+set wildmenu " visual autocomplete for command menu
+set wildmode=full " show list of completions
+" set wildmode=list:longest,full " show list of completions, and complete as
+                 " much as possible, then iterate full completions
+
+set lazyredraw " redraw only when needed (for fast macros)
+
+set updatecount=50 "Save buffer every 50 chars typed
+set updatetime=5000 "idlenes is 5 sec
+
+set autoread "Automatically load file if changed outside of vi
+set autowrite "save file automatically
+set showmatch "highlight matching brackets
+
+if &history < 1000
+    set history=1000
+endif
+
+if &listchars ==# 'eol:$'
+    "set listchars=tab:>>\ ,trail:.,extends:>,precedes:<,nbsp:.
+    set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
+endif
+set list
+
+set sessionoptions-=options
+set viewoptions-=options
+
+n"}}}
+
+
+if v:version > 703 || v:version == 703 && has("patch541")
+    set formatoptions+=j " Delete comment character when joining commented lines
+endif
+
+" {{{ Searching
+set incsearch 
+set hlsearch
+set ignorecase
+set smartcase
+" turn off search highlight
+nnoremap <silent> <leader><space> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+hi Search term=reverse ctermfg=16 ctermbg=239 guifg=Black guibg=Yellow
+"}}}
+
+
+"{{{ Movement
+" move vertically by visual lines when long lines get visually wrapped to two lines
+nnoremap j gj
+nnoremap k gk
+
+"highlight last inserted text
+nnoremap gV `[v`]
+"}}}
+
+"Save session
+nnoremap <leader>s :mksession<CR>
+
+" Template toolkit files filetype
+au BufNewFile,BufRead *.tt setf tt2
+au BufNewFile,BufRead *.tt2 setf tt2
+
+" Autosys jil files
+au BufNewFile,BufRead *.jil setf autosys
+
+
+"{{{ Status Line
+set statusline=
+set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
+set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
+set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ REPLACE\ ':''}
+set statusline+=%#Cursor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
+set statusline+=\ %n\                   " buffer number
+set statusline+=%#Visual#               " color
+set statusline+=%{&paste?'\ PASTE\ ':''}
+set statusline+=%{&spell?'\ SPELL\ ':''}
+set statusline+=%#CursorIM#             " color
+set statusline+=%R                     "Read only flag
+set statusline+=%M                     "Modified [+] flag
+set statusline+=%#Cursor#
+set statusline+=%#CursorIM#
+set statusline+=\ %t\                  " Short file name
+set statusline+=%=                     " Right align
+set statusline+=%#Diffchange#
+set statusline+=%{FugitiveStatusline()}  "Fugitive status line
+set statusline+=%#CursorLine#
+set statusline+=\ %Y\                    "File type
+set statusline+=%#CursorIM#
+set statusline+=\ %3l:%-2c\            " line + column
+set statusline+=%#Cursor#
+set statusline+=\ %3p%%\               "percentage
+
+hi StatusLine ctermfg=15 guifg=#ffffff ctermbg=239 guibg=#4e4e4e cterm=bold gui=bold
+hi StatusLineNC ctermbg=249 guifg=#b2b2b2 ctermbg=237 guibg=#3a3a3a cterm=none gui=none
+
+set laststatus=2 " Always show the status line regardless of number of windows (splits)
+"}}}
+"
+"
+"{{{ Ultisnips settings
+let g:UltiSnipsEditSplit="context"
+let g:UltiSnipsListSnippets="<c-l>"
+let g:UltiSnipsSnippetsDir="~/.vim/Ultisnips"
+let g:UltiSnipsExpandTrigger="<tab>"
+" Default valuel of ultisnip <c-k> interfers with build-in completion
+" function i_CTRL-X_CTRL-K. Below is a workaround.
+" This can be removed once Supertab or Youcompletem is setup
+inoremap <c-x><c-k> <c-x><c-k>
+"}}}
+
+" make YCM compatible with UltiSips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UlstisnipsExpand Trigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwordTrigger = "<s-tab>"
+
+"{{{ netrw
+" Make netrw more useful
+let g:netrw_sort_by = 'time'
+let g:netrw_sort_direction = 'reverse'
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 0
+let g:netrw_fastbrowse = 1
+let g:netrw_altv = 1
+let g:netrw_sort_by = 'name'
+let g:netrw_sort_direction = 'normal'
+let g:netrw_winsize = 25
+"}}}
+
+"{{{ abbreviations
+iab pritn print
+iab teh the
+iab statsu tatus
+iab failuer failure
+"}}}
+
+"{{{ mappings
+" display list of available buffers and switch to them using the buffer number
+nnoremap <F5> :buffers<CR>:buffer<Space>
+" list all available buffers
+nnoremap <leader>bl :b <C-Z>
+" Switch to next/prev buffer
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bp :bp<CR>
+"Switch to the buffere that you just left (toggle)
+nnoremap <leader>bb :b#<CR>
+
+" Bufexplorer mappings
+" <leader>be
+" <leader>bt
+" <leader>bv
+" <leader>bs
+
+"}}}
+
+set splitbelow
+set splitright
+
+au BufEnter *.t nnoremap <leader>r :term prove -cv %<CR>
+au BufEnter *.pl nnoremap <leader>r :term %
+au BufEnter *.sh nnoremap <leader>r :term sh %<CR>
+
+" TODO
+" resize window mappings
+
+
+" Source the vimrc
+nnoremap <leader>fer :so %<CR>
+nnoremap <leader>fed :e ~/.vimrc <CR>
+
+" NERD Tree
+let NERDTreeQuitOnOpen=1
+nnoremap <leader>n :NERDTreeFind<CR>
+
+" Fugitive
+nnoremap <leader>gs :G <CR>
+nnoremap <leader>gc :G checkout <C-D>
+nnoremap <leader>gp :G push<CR>
+
+
+" autoclose parens
+inoremap {<CR> {<CR>}<ESC>O
+
+inoremap jk <ESC>
+inoremap kj <ESC>
+
+inoremap <leader>w <ESC>:w<CR>
+nnoremap <leader>w <ESC>:w<CR>

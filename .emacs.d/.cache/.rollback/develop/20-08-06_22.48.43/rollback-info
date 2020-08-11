@@ -1,0 +1,2 @@
+
+(setq update-packages-alist (quote ((org-plus-contrib . "org-plus-contrib-20200727") (iedit . "iedit-20200805.444"))))

@@ -1,0 +1,39 @@
+;;; -*- coding: utf-8 -*-
+(("/home/ketan/.emacs.d/doc/DOCUMENTATION.org" . 108793)
+ ("/home/ketan/.emacs.d/.cache/recentf" . 1127)
+ ("/home/ketan/.emacs.d/.cache/layouts/persp-auto-save" . 1592)
+ ("/home/ketan/projects/Perl/test.pl" . 328)
+ ("/home/ketan/.emacs.d/elpa/develop/org-plus-contrib-20200810/org-loaddefs.el" . 136184)
+ ("/home/ketan/.emacs.d/.cache/.custom-settings" . 271)
+ ("/home/ketan/projects/notes/personal.org" . 3007)
+ ("/home/ketan/.emacs.d/.cache/treemacs-persist" . 33)
+ ("/home/ketan/projects/Perl/"
+  (dired-filename . "/home/ketan/projects/Perl/test.pl"))
+ ("/home/ketan/projects/"
+  (dired-filename . "/home/ketan/projects/Perl"))
+ ("/home/ketan/"
+  (dired-filename . "/home/ketan/projects"))
+ ("/home/ketan/projects/notes/"
+  (dired-filename . "/home/ketan/projects/notes/personal.org"))
+ ("/home/ketan/.emacs.d/core/templates/.spacemacs.template" . 143)
+ ("/home/ketan/projects/emacs_setup/"
+  (dired-filename . "/home/ketan/projects/emacs_setup/.."))
+ ("/home/ketan/projects/dot-files/"
+  (dired-filename . "/home/ketan/projects/dot-files/.."))
+ ("/home/ketan/.emacs.d/elpa/develop/bind-key-20200805.1727/bind-key-autoloads.el" . 2620)
+ ("/home/ketan/.emacs.d/elpa/develop/dash-20200803.1520/dash-autoloads.el" . 620)
+ ("/home/ketan/.emacs.d/elpa/develop/evil-matchit-20200803.1205/evil-matchit-autoloads.el" . 13021)
+ ("/home/ketan/.emacs.d/elpa/develop/helm-core-20200803.1032/helm-core-autoloads.el" . 6893)
+ ("/home/ketan/.emacs.d/elpa/develop/helm-swoop-20200805.1943/helm-swoop-autoloads.el" . 2443)
+ ("/home/ketan/.emacs.d/elpa/develop/treemacs-20200802.819/treemacs-autoloads.el" . 12904)
+ ("/home/ketan/.emacs.d/elpa/develop/yasnippet-snippets-20200802.1658/yasnippet-snippets-autoloads.el" . 751)
+ ("/home/ketan/.spacemacs" . 18014)
+ ("/home/ketan/GNUCash/ketan.gnucash.20200801162744.log" . 341)
+ ("/home/ketan/projects/dot-files/vim/vimrc" . 2064)
+ ("/home/ketan/perlsense/PlSense-0.3.4/bin/plsense" . 12)
+ ("/usr/share/emacs/26.3/lisp/progmodes/prog-mode.el.gz" . 10708)
+ ("/home/ketan/.emacs.d/elpa/develop/vimrc-mode-20181116.1919/vimrc-mode-autoloads.el" . 733)
+ ("/home/ketan/.emacs.d/elpa/develop/dactyl-mode-20140906.1725/dactyl-mode-autoloads.el" . 535)
+ ("/home/ketan/.spacemacs.elc" . 6182)
+ ("/home/ketan/.alacritty.yml" . 5386)
+ ("/home/ketan/Downloads/alacritty.bash" . 1834))

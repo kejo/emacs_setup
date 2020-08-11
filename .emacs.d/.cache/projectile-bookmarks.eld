@@ -1,0 +1,1 @@
+("~/.emacs.d/" "~/projects/notes/" "~/projects/dot-files/" "~/perlsense/PlSense-0.3.4/")
