@@ -1,3 +1,0 @@
-(hyperlist-mode
- :fetcher github
- :repo "Vifon/hyperlist-mode")

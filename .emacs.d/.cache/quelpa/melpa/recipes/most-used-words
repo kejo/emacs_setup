@@ -1,3 +1,0 @@
-(most-used-words
- :fetcher git
- :url "https://github.com/udyantw/most-used-words.git")

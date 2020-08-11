@@ -1,3 +1,0 @@
-(acme-theme
- :fetcher github
- :repo "ianpan870102/acme-emacs-theme")

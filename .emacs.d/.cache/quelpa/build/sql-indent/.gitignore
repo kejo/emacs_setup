@@ -1,8 +1,0 @@
-# -*- mode: conf -*-
-ChangeLog
-sql-indent-autoloads.el
-sql-indent-pkg.el
-*.elc
-*~
-\#*\#
-.\#*
